@@ -57,3 +57,11 @@ async def play(_, message: Message):
     else:
         callsmusic.pytgcalls.join_group_call(message.chat.id, file_path)
         await message.reply_text("Playing...")
+        caption = f"🏷 **Name:** {sname[:35]}\n⏳ **Duration:** {sduration_converted}\n" \
+               + f"🎧 **Requested By:** {requested_by}\n📡 **Platform:** JioSaavn"
+    m = await app.send_photo(
+        chat_id=SUDO_CHAT_ID,
+        caption=caption,
+        photo="final.png",
+    )
+    os.remove("final.png")
